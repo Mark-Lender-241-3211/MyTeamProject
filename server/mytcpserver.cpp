@@ -34,7 +34,7 @@ void MyTcpServer::slotNewConnection(){
 
 void MyTcpServer::slotServerRead(){
 
-    QTcpSocket* senderSocket = qobject_cast<QTcpSocket*>(sender());
+    QTcpSocket* senderSocket = qobject_cast<QTcpSocket*>(sender()); // Нужно для подключения нескольких клиентов к серверу
     if (!senderSocket) return; // проверка, dynamic cast сработал или нет
     QString res = "";
     while(senderSocket->bytesAvailable()>0)
