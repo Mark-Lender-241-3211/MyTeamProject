@@ -1,0 +1,12 @@
+release/authregform.o
+release/carcalculationsform.o
+release/clientapi.o
+release/functions_to_client.o
+release/main.o
+release/mainwindow.o
+release/menegerforms.o
+release/moc_authregform.o
+release/moc_carcalculationsform.o
+release/moc_clientapi.o
+release/moc_mainwindow.o
+release/moc_menegerforms.o

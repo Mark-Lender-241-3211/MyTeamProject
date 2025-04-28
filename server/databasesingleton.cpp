@@ -22,7 +22,7 @@ DataBaseSingleton::DataBaseSingleton()
     }
 
     this->db = QSqlDatabase::addDatabase("QSQLITE");
-    this->db.setDatabaseName("C:/Server/DataBase.db");
+    this->db.setDatabaseName("DataBase.db");
 
     if(!db.open()){
         qDebug()<<db.lastError().text();
