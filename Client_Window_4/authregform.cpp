@@ -160,6 +160,15 @@ bool AuthRegForm::isvalidEmail(QString email) {
 
 void AuthRegForm::on_pushButton_Reg_clicked() {
 
+    QByteArray testRequest = "test";
+    clientApi->query_to_server(testRequest);
+
+    if (clientApi->query_to_server(testRequest) == "Timeout error") {
+        ui->label_error->setVisible(true);
+        ui->label_error->setText("Сервер недоступен! Попробуйте позже.");
+        return;
+    }
+
     // Проверяем, заполнены ли все поля и совпадают ли пароли
     ui->lineEdit_login->setFocus();
     if (ui->lineEdit_password->text().isEmpty() ||
