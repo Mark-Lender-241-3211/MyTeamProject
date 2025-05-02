@@ -1,0 +1,15 @@
+debug/carcalculationsform.o
+debug/clientapi.o
+debug/functions_to_client.o
+debug/main.o
+debug/mainwindow.o
+debug/menegerforms.o
+debug/new_pass_form.o
+debug/passwordhasher.o
+debug/qrc_image.o
+debug/moc_authregform.o
+debug/moc_carcalculationsform.o
+debug/moc_clientapi.o
+debug/moc_mainwindow.o
+debug/moc_menegerforms.o
+debug/moc_new_pass_form.o
