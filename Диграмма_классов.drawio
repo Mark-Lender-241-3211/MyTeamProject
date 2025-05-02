@@ -1,0 +1,231 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.14">
+  <diagram name="Страница — 1" id="rvQm59asrEr6rEy3niUR">
+    <mxGraphModel dx="5007" dy="1487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2TDB66tm4EquN85-QFAh-1" value="MyTcpServer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-180" y="30" width="210" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-2" value="- Data: QByteArray&lt;div&gt;- mTcpServer: QTcpServer*&lt;/div&gt;&lt;div&gt;- mTcpSocket: QTcpSocket*&lt;/div&gt;&lt;div&gt;- Socket_Email: QMap&amp;lt;QTcpSocket*, QString&amp;gt;*&lt;/div&gt;&lt;div&gt;- Sockets: QVector&amp;lt;QTcpSocket*&amp;gt;&lt;/div&gt;&lt;div&gt;- db: DataBaseSingleton*&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-1">
+          <mxGeometry y="26" width="210" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-1">
+          <mxGeometry y="140" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-4" value="+ MyTcpServer(parent: QObject* = nullptr)&lt;div&gt;+ ~MyTcpServer()&lt;/div&gt;&lt;div&gt;+ Parsing(inputs: QString): QString&lt;/div&gt;&lt;div&gt;+ generateRandomCode(length: int): QString&lt;/div&gt;&lt;div&gt;+ slotNewConnection()&lt;/div&gt;&lt;div&gt;+ slotClientDisconnected()&lt;/div&gt;&lt;div&gt;+ slotServerRead()&lt;/div&gt;&lt;div&gt;- sendEmail(to: const QString&amp;amp;, code: const QString&amp;amp;)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-1">
+          <mxGeometry y="148" width="210" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-85" value="PasswordHasher" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="1280" width="560" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-87" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-85">
+          <mxGeometry y="26" width="560" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-88" value="&lt;div&gt;+ static generateSalt(length: int = 4): QByteArray&lt;/div&gt;&lt;div&gt;+ static hashPassword(password: const QString&amp;amp;, salt: const QByteArray&amp;amp;, iterations: int = 10000): QByteArray&lt;/div&gt;&lt;div&gt;+ static verifyPassword(password: const QString&amp;amp;, storedHash: const QByteArray&amp;amp;, salt: const QByteArray&amp;amp;, iterations: int = 10000): bool&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-85">
+          <mxGeometry y="34" width="560" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-145" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-93" target="2TDB66tm4EquN85-QFAh-100">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1010" y="379.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-93" value="AuthRegForm" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="540" width="320" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-94" value="&lt;div&gt;- ui: Ui::AuthRegForm*&lt;/div&gt;&lt;div&gt;- clientApi: ClientAPI*&lt;/div&gt;&lt;div&gt;- scene: QGraphicsScene*&lt;/div&gt;&lt;div&gt;- authAttempts: int&lt;/div&gt;&lt;div&gt;- toRegAttempts: int&lt;/div&gt;&lt;div&gt;+ static randomValue: int&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-93">
+          <mxGeometry y="26" width="320" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-95" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-93">
+          <mxGeometry y="120" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-96" value="&lt;div&gt;+ AuthRegForm(parent: QWidget* = nullptr): void&lt;/div&gt;&lt;div&gt;+ getLineEditText(): QString&lt;/div&gt;&lt;div&gt;+ static loadBackground(view: QGraphicsView*, scene: QGraphicsScene*, imagePath: const QString&amp;amp;): void&lt;/div&gt;&lt;div&gt;- change_type_to_reg(bool): void&lt;/div&gt;&lt;div&gt;- clear(): void&lt;/div&gt;&lt;div&gt;- isvalidEmail(email: QString): bool&lt;/div&gt;&lt;div&gt;+ reg_ok(QString): void&lt;/div&gt;&lt;div&gt;+ auth_ok(QString): void&lt;/div&gt;&lt;div&gt;+ pass_no(QString): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-93">
+          <mxGeometry y="128" width="320" height="162" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-97" value="ClientAPI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="110" width="290" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-98" value="&lt;div&gt;- static p_instance: ClientAPI*&lt;/div&gt;&lt;div&gt;- static destroyer: SingletonDestroyer&lt;/div&gt;&lt;div&gt;- mTcpSocket: QTcpSocket*&lt;/div&gt;&lt;div&gt;+ COD: QString&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-97">
+          <mxGeometry y="26" width="290" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-99" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-97">
+          <mxGeometry y="130" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-100" value="&lt;div&gt;+ static getInstance(): ClientAPI*&lt;/div&gt;&lt;div&gt;+ query_to_server(QString): QByteArray&lt;/div&gt;&lt;div&gt;+ isAuthValid(login: const QString&amp;amp;, password: const QString&amp;amp;): bool&lt;/div&gt;&lt;div&gt;+ isRegValid(login: const QString&amp;amp;, password: const QString&amp;amp;, mail: const QString&amp;amp;): QString&lt;/div&gt;&lt;div&gt;+ sendMail(mail: const QString&amp;amp;): QString&lt;/div&gt;&lt;div&gt;+ disconnected(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-97">
+          <mxGeometry y="138" width="290" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-102" value="SingletonDestroyer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="120" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-103" value="- p_instance: ClientAPI*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-102">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-104" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-102">
+          <mxGeometry y="52" width="170" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-105" value="&lt;div&gt;+ ~SingletonDestroyer(): void&lt;/div&gt;&lt;div&gt;+ initialize(p: ClientAPI*): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-102">
+          <mxGeometry y="60" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-107" value="new_pass_form" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="1110" width="180" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-108" value="&lt;div&gt;- ui: Ui::new_pass_form*&lt;/div&gt;&lt;div&gt;- clientApi: ClientAPI*&lt;/div&gt;&lt;div&gt;- AuthReg: AuthRegForm*&lt;/div&gt;&lt;div&gt;- generatedCode: QString&lt;/div&gt;&lt;div&gt;- isCodeGenerated: bool&lt;/div&gt;&lt;div&gt;- scene2: QGraphicsScene*&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-107">
+          <mxGeometry y="26" width="180" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-109" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-107">
+          <mxGeometry y="120" width="180" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-110" value="&lt;div&gt;+ new_pass_form(parent: QWidget* = nullptr): void&lt;/div&gt;&lt;div&gt;+ slot_pass_no_show(QString): void&lt;/div&gt;&lt;div&gt;+ pass_ok(QString): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-107">
+          <mxGeometry y="128" width="180" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;endFill=0;startArrow=diamondThin;endSize=27;startSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-111" target="2TDB66tm4EquN85-QFAh-119">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-111" value="MenegerForms" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1010" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-112" value="&lt;div&gt;- curr_auth: AuthRegForm*&lt;/div&gt;&lt;div&gt;- car_form: CarCalculationsForm*&lt;/div&gt;&lt;div&gt;- pass_form: new_pass_form*&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-111">
+          <mxGeometry y="26" width="280" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-113" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-111">
+          <mxGeometry y="80" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-114" value="&lt;div&gt;+ MenegerForms(parent: QWidget* = nullptr): void&lt;/div&gt;&lt;div&gt;+ ~MenegerForms(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-111">
+          <mxGeometry y="88" width="280" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-116" target="2TDB66tm4EquN85-QFAh-123">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-116" value="CarCalculationsForm" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="780" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-117" value="&lt;div&gt;- ui: Ui::CarCalculationsForm*&lt;/div&gt;&lt;div&gt;- clientApi: ClientAPI*&lt;/div&gt;&lt;div&gt;- AuthReg: AuthRegForm*&lt;/div&gt;&lt;div&gt;- scene3: QGraphicsScene*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-116">
+          <mxGeometry y="26" width="320" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-118" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-116">
+          <mxGeometry y="90" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-119" value="&lt;div&gt;+ CarCalculationsForm(parent: QWidget* = nullptr): void&lt;/div&gt;&lt;div&gt;+ slot_car_show(QString): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-116">
+          <mxGeometry y="98" width="320" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-147" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-120" target="2TDB66tm4EquN85-QFAh-100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-120" value="MainWindow" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="510" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-121" value="&lt;div&gt;- ui: Ui::MainWindow*&lt;/div&gt;&lt;div&gt;- quotes: std::vector&amp;lt;QString&amp;gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-120">
+          <mxGeometry y="26" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-122" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-120">
+          <mxGeometry y="70" width="270" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-123" value="&lt;div&gt;+ MainWindow(parent: QWidget* = nullptr): void&lt;/div&gt;&lt;div&gt;- loadQuotes(): void&lt;/div&gt;&lt;div&gt;- displayRandomQuote(): void&lt;/div&gt;&lt;div&gt;+ slot_help_show(QString): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-120">
+          <mxGeometry y="78" width="270" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-124" value="functions_to_client" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1070" width="300" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-126" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-124">
+          <mxGeometry y="26" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-127" value="&lt;div&gt;+ auth(login: const QString&amp;amp;, password: const QString&amp;amp;): bool&lt;/div&gt;&lt;div&gt;+ auth_p(password: const QString&amp;amp;): bool&lt;/div&gt;&lt;div&gt;+ auth_l(login: const QString&amp;amp;): bool&lt;/div&gt;&lt;div&gt;+ reg(login: const QString&amp;amp;, password: const QString&amp;amp;, mail: const QString&amp;amp;): bool&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-124">
+          <mxGeometry y="34" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1.019;entryY=0.709;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=diamondThin;startFill=0;startArrow=none;endFill=0;endSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-107" target="2TDB66tm4EquN85-QFAh-112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;endSize=21;startFill=0;startArrow=diamondThin;startSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-112" target="2TDB66tm4EquN85-QFAh-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-158" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=-0.011;exitY=0.212;exitDx=0;exitDy=0;entryX=0;entryY=0.643;entryDx=0;entryDy=0;endArrow=none;startFill=0;endSize=27;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-112" target="2TDB66tm4EquN85-QFAh-98">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="1055" as="sourcePoint" />
+            <mxPoint x="860" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-159" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-88" target="2TDB66tm4EquN85-QFAh-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-161" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=0;strokeWidth=1;startSize=15;endSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-98" target="2TDB66tm4EquN85-QFAh-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-162" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-103" target="2TDB66tm4EquN85-QFAh-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-163" value="DataBaseSingleton" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-655" y="440" width="270" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-164" value="- static DataBaseSingleton* p_instance&amp;nbsp;&lt;div&gt;- static DataBaseSingletonDestroyer destroyer&amp;nbsp;&lt;/div&gt;&lt;div&gt;- QSqlDatabase db&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-163">
+          <mxGeometry y="26" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-165" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-163">
+          <mxGeometry y="90" width="270" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-166" value="&lt;div&gt;+ static getInstance(): DataBaseSingleton*&lt;/div&gt;&lt;div&gt;+ auth(QString, QString): QString&lt;/div&gt;&lt;div&gt;+ reg(QString, QString, QString, QString): QString&lt;/div&gt;&lt;div&gt;+ repas(QString, QString, QString): QString&lt;/div&gt;&lt;div&gt;+ checkUser(QString): QString&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-163">
+          <mxGeometry y="98" width="270" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-167" value="DataBaseSingletonDestroyer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-310" y="750" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-168" value="- DataBaseSingleton* p_instance" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-167">
+          <mxGeometry y="26" width="260" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-169" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-167">
+          <mxGeometry y="52" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-170" value="&lt;div&gt;+ ~DataBaseSingletonDestroyer()&lt;/div&gt;&lt;div&gt;+ initialize(DataBaseSingleton*): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-167">
+          <mxGeometry y="60" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-171" value="PasswordHasher" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-965" y="780" width="310" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-173" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-171">
+          <mxGeometry y="26" width="310" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-174" value="&lt;div&gt;+ static generateSalt(int): QByteArray&lt;/div&gt;&lt;div&gt;+ static hashPassword(QString, QByteArray, int): QByteArray&lt;/div&gt;&lt;div&gt;+ static verifyPassword(QString, QByteArray, QByteArray, int): bool&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-171">
+          <mxGeometry y="34" width="310" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-176" value="PassengerCar" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-650" y="60" width="260" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-177" value="- QString brand&amp;nbsp;&lt;div&gt;- QString color&amp;nbsp;&lt;/div&gt;&lt;div&gt;- QString fuel_volume&amp;nbsp;&lt;/div&gt;&lt;div&gt;- QString fuel_power&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-176">
+          <mxGeometry y="26" width="260" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-178" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-176">
+          <mxGeometry y="100" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-179" value="+ Distance_fuel(): QString&amp;nbsp;&lt;div&gt;+ Get_brand(): QString&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Get_color(): QString&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Get_volume(): QString&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Get_power(): QString&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Price_for_full_tank(QString): QString&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Set_brand(QString): void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Set_color(QString): void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Set_volume(QString): void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Set_power(QString): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-176">
+          <mxGeometry y="108" width="260" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-180" value="Truck" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1040" y="90" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-181" value="- QString max_weigh" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-180">
+          <mxGeometry y="26" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-182" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="2TDB66tm4EquN85-QFAh-180">
+          <mxGeometry y="52" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-183" value="+ Price_km(QString): QString&amp;nbsp;&lt;div&gt;+ Set_max_weight(QString): void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ Get_max_weight(): QString&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="2TDB66tm4EquN85-QFAh-180">
+          <mxGeometry y="60" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-184" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-174" target="2TDB66tm4EquN85-QFAh-164">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-185" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-179" target="2TDB66tm4EquN85-QFAh-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-186" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;endSize=24;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-183" target="2TDB66tm4EquN85-QFAh-177">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-187" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=1;strokeWidth=1;endSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-168" target="2TDB66tm4EquN85-QFAh-164">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2TDB66tm4EquN85-QFAh-188" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=0;endSize=27;" edge="1" parent="1" source="2TDB66tm4EquN85-QFAh-164" target="2TDB66tm4EquN85-QFAh-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
