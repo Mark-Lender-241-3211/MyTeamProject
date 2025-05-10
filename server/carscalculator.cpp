@@ -1,14 +1,22 @@
 #include "carscalculator.h"
 //PassengerCar
 #include <QVariant>
+#include <QRegularExpression>
+
+bool isNumber(const QString &str) {
+    QRegularExpression regex("^-?\\d+(\\.\\d+)?$");
+    QRegularExpressionMatch match = regex.match(str);
+    return match.hasMatch();
+}
+
 PassengerCar::~PassengerCar(){}
 
 PassengerCar::PassengerCar()
 {
-    this->Set_brand("");
-    this->Set_color("");
-    this->Set_power("");
-    this->Set_volume("");
+    this->Set_brand("0");
+    this->Set_color("0");
+    this->Set_power("0");
+    this->Set_volume("0");
 }
 PassengerCar::PassengerCar(QString _brand, QString _color, QString _volume, QString _power)
 {
@@ -16,11 +24,19 @@ PassengerCar::PassengerCar(QString _brand, QString _color, QString _volume, QStr
     this->Set_color(_color);
     this->Set_power(_power);
     this->Set_volume(_volume);
+    if(!isNumber(_volume)){this->Set_volume("0");}
+    if(!isNumber(_power)){this->Set_power("0");}
+
 }
 QString PassengerCar::Distance_fuel() const
 {
-    return QString::number(round(this->fuel_volume.toDouble()/(1.*this->fuel_power.toDouble())*100));
+    return QString::number(qRound(this->fuel_volume.toDouble()/(1.*this->fuel_power.toDouble())*100));
 }
+QString PassengerCar::Price_for_full_tank(QString fuel_price) const
+{
+    return QString::number(qRound(this->fuel_volume.toDouble()* fuel_price.toDouble()));
+}
+
 QString PassengerCar::Get_brand() const
 {
     return this->brand;
@@ -57,7 +73,7 @@ void PassengerCar::Set_power(QString _fuel_power)
 //Truck
 Truck::~Truck(){}
 Truck::Truck(): PassengerCar::PassengerCar(){
-    this->Set_max_weight("");
+    this->Set_max_weight("1");
 }
 Truck::Truck(QString _brand, QString _color, QString _volume, QString _power, QString _max_weight):
     PassengerCar::PassengerCar(_brand, _color, _volume, _power){

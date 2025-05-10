@@ -2,9 +2,10 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include<QString>
+#include <QRandomGenerator>
 MyTcpServer::~MyTcpServer()
 {
-
+    delete[] Socket_Email;
     mTcpServer->close();
 }
 
@@ -21,7 +22,8 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     }
     DataBaseSingleton* database = DataBaseSingleton::getInstance();
     this->db = database;
-    qDebug() << "Адрес базы данных в памяти: " << this->db;
+    qDebug() << "Database address: " << this->db;
+    Socket_Email = new QMap<QTcpSocket*, QString>;
 }
 
 void MyTcpServer::slotNewConnection(){
@@ -40,7 +42,6 @@ void MyTcpServer::slotServerRead(){
     while(senderSocket->bytesAvailable()>0)
     {
         QByteArray array =senderSocket->readAll();
-        qDebug()<<QString::fromUtf8(array)<<"\n";
         if(array=="\x01")
         {
             senderSocket->write(Parsing(res).toUtf8());
@@ -51,8 +52,14 @@ void MyTcpServer::slotServerRead(){
     }
     senderSocket->write(Parsing(res).toUtf8());
 }
-void MyTcpServer::slotClientDisconnected(){
-    mTcpSocket->close();
+void MyTcpServer::slotClientDisconnected() {
+    QTcpSocket* disconnectedSocket = qobject_cast<QTcpSocket*>(sender());
+    if (!disconnectedSocket){
+        Sockets.remove(Sockets.indexOf(disconnectedSocket));
+        return;
+    }
+    Sockets.remove(Sockets.indexOf(disconnectedSocket));
+    disconnectedSocket->close();
 }
 
 QString MyTcpServer::Parsing(QString inputs)
@@ -63,13 +70,14 @@ QString MyTcpServer::Parsing(QString inputs)
     const int auth_params_const = 3;
     const int reg_params_const = 5;
     const int cars_params_const = 8;
-    qDebug() << inputs;
     //Для среза "\r\n";
     if(inputs.indexOf("\r\n") > 0){
     int r_index = 0;
     for(int i = 0; i < inputs.length(); i++){if(inputs[i] == '\r'){r_index = i;}}
     command_string = inputs.replace(r_index, 2, "");
     }
+    QTcpSocket * sendSock = qobject_cast<QTcpSocket*>(sender());
+    qDebug() <<Sockets.indexOf(sendSock) <<":"<<inputs;
     //QString command_string = inputs;
     //команды из программы: auth, reg, cars
     if(command_string.count(" ") != 0) // проверка, что в строке вообще есть пробелы
@@ -89,12 +97,12 @@ QString MyTcpServer::Parsing(QString inputs)
         }
         else if(command == "reg" && count_of_params == reg_params_const)
         {
-        // reg <login> <password> <check_password> <email>
+        // reg <login> <hache_password> <salt> <email>
             QString login = command_string.split(" ")[1];
             QString password = command_string.split(" ")[2];
-            QString check_password = command_string.split(" ")[3];
+            QString salt = command_string.split(" ")[3];
             QString email = command_string.split(" ")[4];
-            return db->reg(login, password, check_password, email);
+            return db->reg(login, password, salt, email);
         }
         else if(command == "cars" && count_of_params == cars_params_const)
         {
@@ -107,27 +115,110 @@ QString MyTcpServer::Parsing(QString inputs)
             QString max_weight = command_string.split(" ")[6];
             QString fuel_price = command_string.split(" ")[7];
 
-            if(car == '0'){
+            if(car == '1'){
                 PassengerCar calc(brand, color, fuel_volume, fuel_power);
-                return "cars " + calc.Distance_fuel() + " 0";
-                //return cars <Distance> <0>
+                return "cars " + calc.Distance_fuel() + " " +  calc.Price_for_full_tank(fuel_price) + " nan";
+                //return cars <Distance> <PriceFullTank> <0>
             }
-            else if(car == '1'){
+            else if(car == '0'){
                 Truck calc(brand, color, fuel_volume, fuel_power, max_weight);
-                return "cars " + calc.Distance_fuel() + " " + calc.Price_km(fuel_price);
-                //return cars <Distance> <Price/km>
+                return "cars " + calc.Distance_fuel() + " " +  calc.Price_for_full_tank(fuel_price)  + " " + calc.Price_km(fuel_price);
+                //return cars <Distance> <PriceFullTank> <Price/km>
             }
             else{
-                return "cars InvalidParams ";
+                return "cars InvalidParams";
             }
         }
+        else if(command == "repas")
+        {
+            //repas <login>
+            if(count_of_params == 2)
+            {
+                QString login = command_string.split(" ")[1];
+                QString email = this->db->checkUser(login);
+                if(email == ""){return "UserNotExists";}
+                QTcpSocket* senderSocket = qobject_cast<QTcpSocket*>(sender());
+                Socket_Email->insert(senderSocket, email);
+
+                QString code = generateRandomCode(6); // Генерация кода
+                std::thread([this, email, code]() {// параллельный процесс
+                    this->sendEmail(email, code); // высылается на почту
+                }).detach();
+                return "repas " + code;
+            }
+
+            //<repas> <cache> <salt>
+            else if(count_of_params == 3)
+            {
+                QTcpSocket* senderSocket = qobject_cast<QTcpSocket*>(sender());
+                QString SocketEmail = Socket_Email->take(senderSocket);
+                QString pas = command_string.split(" ")[1];
+                QString salt = command_string.split(" ")[2];
+                Socket_Email->remove(senderSocket);
+                return db->repas(SocketEmail, pas, salt);
+            }
+        }//checkUser <email>
+        else if(command == "checkUser") // так чисто по приколу
+        {
+            return db->checkUser(command_string.split(" ")[1]);
+        }
         else{
-            return "invalid command ";
+            return "invalid command";
         }
     }
     else
     {
-        return "invalid request ";
+        return "invalid request";
     }
-    return "Critical Error ";
+    return "Critical Error";
+}
+
+void MyTcpServer::sendEmail(const QString &to, const QString &code) {
+    QSslSocket socket;
+    // Подключаемся с SSL
+    socket.connectToHostEncrypted("smtp.mail.ru", 465);
+    if (!socket.waitForEncrypted(3000)) {
+        qDebug() << "SSL handshake failed:" << socket.errorString();
+        return;
+    }
+
+    // Функция для отправки команд
+    auto write = [&](const QString &data) {
+        socket.write((data + "\r\n").toUtf8());
+        if (!socket.waitForBytesWritten(3000)) {
+            qDebug() << "Write failed:" << socket.errorString();
+            return false;
+        }
+        if (!socket.waitForReadyRead(3000)) {
+            qDebug() << "No response:" << socket.errorString();
+            return false;
+        }
+        return true;
+    };
+
+    // Правильная SMTP-сессия с SSL
+    write("EHLO example.com");
+    write("AUTH LOGIN");
+    write(QByteArray("car_specific@mail.ru").toBase64());
+    write(QByteArray("j7p7JJWPwvPYZbkc01va").toBase64());
+    write("MAIL FROM: <car_specific@mail.ru>");
+    write("RCPT TO: <" + to + ">");
+    write("DATA");
+    write("From: Cars Specific <car_specific@mail.ru>");
+    write("To: " + to);
+    write("Subject: Verification Code");
+    write("");
+    write("Your verification code: " + code);
+    write(".");
+    write("QUIT");
+}
+
+QString MyTcpServer::generateRandomCode(int length) {
+    const QString characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    QString randomString;
+    for (int i = 0; i < length; ++i) {
+        int index = QRandomGenerator::global()->bounded(characters.length());
+        randomString.append(characters[index]);
+    }
+    return randomString;
 }

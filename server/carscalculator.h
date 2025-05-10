@@ -19,6 +19,7 @@ public:
     QString Get_color() const;
     QString Get_volume() const;
     QString Get_power() const;
+    QString Price_for_full_tank(QString) const;
     void Set_brand(QString);
     void Set_color(QString);
     void Set_volume(QString);

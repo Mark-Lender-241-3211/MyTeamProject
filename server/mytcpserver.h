@@ -15,6 +15,7 @@ class MyTcpServer : public QObject
     Q_OBJECT
 public:
     QString Parsing(QString);
+    QString generateRandomCode(int);
     explicit MyTcpServer(QObject *parent = nullptr);
     ~MyTcpServer();
 public slots:
@@ -25,8 +26,10 @@ private:
     QByteArray Data;
     QTcpServer * mTcpServer;
     QTcpSocket * mTcpSocket;
+    QMap<QTcpSocket*, QString> * Socket_Email;
     QVector <QTcpSocket*> Sockets;
     DataBaseSingleton *db;
+    void sendEmail(const QString&, const QString&);
     //int server_status;
 };
 #endif // MYTCPSERVER_H
