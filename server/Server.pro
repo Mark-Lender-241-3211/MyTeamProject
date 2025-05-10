@@ -1,6 +1,7 @@
 QT -= gui
-INCLUDEPATH += "$$OpenSSL-Win64/include"
-LIBS += -L"$$OpenSSL-Win64/lib" -llibeay32 -lssleay32
+# Ниже два путя до библиотеки, на гите есть эта папка(нужно ее скачать), потом нужно указать до нее полный путь(заменить пути котореы ниже).
+INCLUDEPATH += C:/OpenSSL-Win64/include
+LIBS += -LC:/OpenSSL-Win64/lib -llibeay32 -lssleay32
 QT += network #Для работы с сетью
 QT += sql # для базы данных
 
