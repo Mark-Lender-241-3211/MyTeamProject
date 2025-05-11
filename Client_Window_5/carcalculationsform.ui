@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CarCalculationsForm</class>
+ <widget class="QDialog" name="CarCalculationsForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QGraphicsView" name="graphicsView3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>960</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/dom/image/46.png);</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>350</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;</string>
+   </property>
+   <property name="text">
+    <string>Грузовой</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_fuelPrice">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>510</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_calculateLoadCapacity">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>560</y>
+     <width>221</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_calculateDistance">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>540</y>
+     <width>241</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_calculateTransportCost">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>540</y>
+     <width>271</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_loadCapacity">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>450</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_fuelConsumption">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>400</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_fuelTankVolume">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>290</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_color">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>220</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_brand">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>160</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_back">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>650</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_finish">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>310</y>
+     <width>241</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>220</y>
+     <width>171</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+padding-left: center;
+border: 0px;
+</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Audi</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>BMW</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>BYD</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Changan</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Chery</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Chevrolet</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Citroën</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Datsun</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Exeed</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>FAW</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Fiat</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ford</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>GAZ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Geely</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Genesis</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Haval</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Honda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Hyundai</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Infiniti</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Jaguar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Jeep</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Jetour</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Kaiyi</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Kia</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Lada</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Land Rover</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Lexus</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Lifan</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Mazda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Mercedes-Benz</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MG</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Mitsubishi</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Moskvich</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Nissan</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Omoda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Opel</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Peugeot</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Porsche</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Renault</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Skoda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SsangYong</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Subaru</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Suzuki</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>TagAZ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Toyota</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>UAZ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Volvo</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Volkswagen</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Zotye</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_2">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>220</y>
+     <width>171</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+font: 700 italic 14pt &quot;Segoe UI&quot;;
+color: white;
+padding-left: center;
+border: 0px;
+</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Белый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Голубой</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Жёлтый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Зелёный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Коричневый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Красный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Оранжевый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Розовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Серый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Серебристый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Синий</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Сиреневый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Фиолетовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Чёрный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Бирюзовый</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButton_exit">
+   <property name="geometry">
+    <rect>
+     <x>919</x>
+     <y>10</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+border: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
