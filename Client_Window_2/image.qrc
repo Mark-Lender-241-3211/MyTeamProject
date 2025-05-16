@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/dom">
-        <file>image/dom.png</file>
-        <file>image/m1000x1000.jpg</file>
-        <file>image/qw.png</file>
-        <file>image/1672339619_mikhail-sharov-nfsug1-breakdown2.gif</file>
-    </qresource>
-</RCC>
