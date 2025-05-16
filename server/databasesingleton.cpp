@@ -1,6 +1,7 @@
 #include "databasesingleton.h"
 using namespace std;
 #include <QRegularExpression>
+#include <QCoreApplication>
 DataBaseSingleton * DataBaseSingleton::p_instance;
 DataBaseSingletonDestroyer DataBaseSingleton::destroyer;
 
@@ -16,13 +17,14 @@ void DataBaseSingletonDestroyer::initialize(DataBaseSingleton * p)
 
 DataBaseSingleton::DataBaseSingleton()
 {
+    QCoreApplication::addLibraryPath("plugins");
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
-        qDebug() << "Драйвер SQLite не доступен!";
+        qDebug() << "Driver SQLite not avalible!";
         return;
     }
 
     this->db = QSqlDatabase::addDatabase("QSQLITE");
-    this->db.setDatabaseName("C:/Server/DataBase.db");
+    this->db.setDatabaseName("DataBase.db");
 
     if(!db.open()){
         qDebug()<<db.lastError().text();
@@ -34,14 +36,15 @@ DataBaseSingleton::DataBaseSingleton()
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             login TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
+            salt TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE
         )
     )";
 
     if (!query.exec(createTableQuery)) {
-        qDebug() << "Ошибка создания таблицы:" << query.lastError().text();
+        qDebug() << "Create table error:" << query.lastError().text();
     }
-    qDebug() << "База данных подключена";
+    qDebug() << "Database is connected!";
 
 }
 
@@ -61,39 +64,37 @@ DataBaseSingleton* DataBaseSingleton::getInstance(){
 QString DataBaseSingleton::auth(QString log, QString pas)
 {
     if (!this->db.isOpen()) {
-        qDebug() << "База данных не открыта!";
+        qDebug() << "Database do not open!";
         return "DataBaseIsNotOpen";
     }
-    QMutexLocker locker(&mutex);
     QSqlQuery query(this->db);
 
-    query.prepare("select * from users where login = :login and password = :password");
+    query.prepare("select password, salt from users where login = :login");
     query.bindValue(":login", log);
-    query.bindValue(":password", pas);
 
     if (!query.exec()) {
-        qDebug() << "Ошибка выполнения запроса:" << query.lastError().text();
+        qDebug() << "Query exec error:" << query.lastError().text();
         return "QueryIsNotValid";
     }
-
-    if (query.next()) {
-        qDebug() << "User " << log << " exists";
-        return "auth+ ";
-    } else {
-        qDebug() << "User " << log << " is not exists";
-        return "auth- ";
+    QByteArray hache;
+    QByteArray salt;
+    while (query.next()) {
+        hache = query.value(0).toByteArray();
+        salt = query.value(1).toByteArray();
     }
-    return "CriticalError";
+    if(PasswordHasher::verifyPassword(pas, hache, salt, 10000)){return "auth+";}
+    else {return "auth-";}
+    return "auth CriticalError";
 }
 
-QString DataBaseSingleton::reg(QString log, QString pas,QString conf_pas, QString email)
+QString DataBaseSingleton::reg(QString log,QString pas, QString salt, QString email)
 {
-    if(!isvalidEmail(email)){return "Email is not valid";}
-    QMutexLocker locker(&mutex);
+    //if(!isvalidEmail(email)){return "Email is not valid";}
     QSqlQuery query(this->db);
-    if(log!="\t" && log != "" && pas != "\t" && pas!= "" && pas==conf_pas){
-        query.prepare("INSERT INTO Users (login, password, email) VALUES (:login, :password, :email);");
+    if(log!="\t" && log != "" && pas != "\t" && pas!= ""){
+        query.prepare("INSERT INTO Users (login, password, salt, email) VALUES (:login, :password, :salt, :email);");
         query.bindValue(":password",pas);
+        query.bindValue(":salt", salt);
         query.bindValue(":login",log);
         query.bindValue(":email",email);
 
@@ -102,22 +103,52 @@ QString DataBaseSingleton::reg(QString log, QString pas,QString conf_pas, QStrin
             //return "auth+&"+log+"&"+query.value(index).toString();
             query.clear();
             qDebug() << "User has been created";
-            return "reg+ ";
+            return "reg+";
         }
         else{
             QString text = query.lastError().text();
             qDebug() << "Query error: " << text;
-            if(text[text.indexOf("Users.") + 6] == 'e'){return "emailNotUNIQ";}
-            else if(text[text.indexOf("Users.") + 6] == 'l'){return "loginNotUNIQ";}
-            return "Error ";
+            if(text[text.indexOf("Users.") + 6] == 'l'){return "loginNotUNIQ";}
+            else if(text[text.indexOf("Users.") + 6] == 'e'){return "emailNotUNIQ";}
+            return "reg-";
         }
     }
-    return "CriticalError reg- ";
+    return "reg CriticalError";
+}
+QString DataBaseSingleton::repas(QString email, QString hache, QString salt)
+{
+    QSqlQuery query(this->db);
+    query.prepare("update users set password = :hache, salt = :salt where email = :email");
+    query.bindValue(":hache",hache);
+    query.bindValue(":salt", salt);
+    query.bindValue(":email",email);
+    if (!query.exec()) {
+        qDebug() << "Query exec error:" << query.lastError().text();
+        return "QueryIsNotValid";
+    }
+    return "repas+";
+}
+
+QString DataBaseSingleton::checkUser(QString login)
+{
+    QSqlQuery query(this->db);
+    query.prepare("select email from users where login = :login");
+    query.bindValue(":login", login);
+    if(!query.exec()){
+        qDebug() << "Query exec error:" << query.lastError().text();
+        return "QueryIsNotValid";
+    }
+    QString email;
+    while (query.next()) {
+        email = query.value(0).toByteArray();
+    }
+    // если возвращает пустую строку то такого пользователя с такой почтой нет
+    return email;
 }
 
 bool isvalidEmail(QString email)
 {
-    QRegularExpression regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    QRegularExpression regex("^[a-zA-Z0-9._%+-]+@(gmail\\.com|mail\\.ru|yandex\\.ru)$");
     QRegularExpressionMatch match = regex.match(email);
     return match.hasMatch();
 }

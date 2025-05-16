@@ -8,7 +8,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QMutex>
-
+#include <passwordhasher.h>
 class DataBaseSingleton;
 
 class DataBaseSingletonDestroyer
@@ -24,7 +24,6 @@ public:
 class DataBaseSingleton
 {
 private:
-    QMutex mutex;
     static DataBaseSingleton * p_instance;
     static DataBaseSingletonDestroyer destroyer;
     QSqlDatabase db;
@@ -38,6 +37,8 @@ public:
     static DataBaseSingleton* getInstance();
     QString auth(QString, QString);
     QString reg(QString, QString,QString, QString);
+    QString repas(QString, QString, QString);
+    QString checkUser(QString);
 };
 bool isvalidEmail(QString);
 #endif // DATABASESINGLETON_H
