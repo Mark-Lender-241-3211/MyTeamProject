@@ -33,8 +33,11 @@ FORMS += \
 
 RESOURCES += \
     image.qrc
+<<<<<<< HEAD
 
 # Настройки OpenSSL (замените пути на свои, если установили не в Program Files!)
 INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/include"
 #LIBS += -L"C:/Program Files/OpenSSL-Win64/lib"
 LIBS += -lssl -lcrypto
+=======
+>>>>>>> Client_Window
